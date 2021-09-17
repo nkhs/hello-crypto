@@ -1,5 +1,5 @@
 
-window.onload = function()
+window.onload = async function()
 {
   // vars
   this.buttonRaining = true;
@@ -34,7 +34,7 @@ window.onload = function()
   web3 = new Web3(web3Provider);
 
   // Get account ID
-  this.walletInfo.accountID = web3.eth.accounts[0];
+  this.walletInfo.accountID = (await web3.eth.getAccounts())[0];
 
   // Get token balances
   if (useEth)
@@ -43,8 +43,8 @@ window.onload = function()
     web3.eth.getBalance(this.walletInfo.accountID, function(error, result){
         if(!error)
         {
-            walletInfo.ETHBalance = web3.fromWei(result, "ether").toFixed(2) + " ETH";
-            rainObject.data.maxDrops = web3.fromWei(result, "ether");
+            walletInfo.ETHBalance = web3.utils.fromWei(result+'', "ether") + " ETH";
+            rainObject.data.maxDrops = web3.utils.fromWei(result+'', "ether");
             displayWallet();
         }
         else

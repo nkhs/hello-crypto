@@ -1,4 +1,5 @@
-pragma solidity >=0.4.21 <0.6.0;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
 import './StandardToken.sol';
 
@@ -15,9 +16,9 @@ contract SimpleToken is StandardToken {
   string public constant symbol = "SIM"; // solium-disable-line uppercase
   uint8 public constant decimals = 18; // solium-disable-line uppercase
 
-  uint256 public constant INITIAL_SUPPLY = 10000 * (10 ** uint256(decimals));
+  uint256 public constant INITIAL_SUPPLY = 30000 * (10 ** uint256(decimals));
 
-  constructor() public {
+  constructor() {
     _totalSupply = INITIAL_SUPPLY;
     _balances[msg.sender] = INITIAL_SUPPLY;
     transfer(msg.sender, INITIAL_SUPPLY);
